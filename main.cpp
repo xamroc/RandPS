@@ -1,17 +1,16 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <unistd.h>
 
 using namespace std;
 
-/* Generate a random number seeded with time value for better randomness */
+/* Return a random number based on time seed for better randomness */
 int random_number_generator(int lowest, int highest)
 {
-    srand((unsigned)time(0));
-    int random_integer;
     int range = highest-lowest;
-    random_integer = lowest+(rand()%(range+1));
-    cout << random_integer << endl;
+    int random_integer = lowest+(rand()%(range+1));
+    return random_integer;
 }
 
 int main()
@@ -29,7 +28,15 @@ int main()
     int highest = argv[1];
     int divisor = argv[2];
 
-    random_number_generator(lowest, highest);
+    int random_number;
+    srand((unsigned)time(0));
+
+    do
+    {
+        random_number = random_number_generator(lowest, highest);
+        cout << random_number << endl;
+        sleep(1);
+    } while(random_number % divisor != 0);
 
     return 0;
 }
