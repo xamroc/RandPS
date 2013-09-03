@@ -4,6 +4,14 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    int argv[3];
+    int argvLen = sizeof(argv)/sizeof(*argv);
+
+    for (int i=0; i<argvLen; i++)
+    {
+        cout << "Enter value of argv[" << i+1 << "]:" << endl;
+        cin >> argv[i];
+    }
+
     return 0;
 }
