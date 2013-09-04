@@ -1,3 +1,4 @@
+#include <ncurses.h>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -18,6 +19,8 @@ int main()
     int argv[3];
     int argvLen = sizeof(argv)/sizeof(*argv);
 
+    refresh();
+
     for (int i=0; i<argvLen; i++)
     {
         cout << "Enter value of argv[" << i+1 << "]:" << endl;
@@ -36,7 +39,7 @@ int main()
         random_number = random_number_generator(lowest, highest);
         cout << random_number << endl;
         sleep(1);
-    } while(random_number % divisor != 0);
+    } while(random_number % divisor != 0 );
 
     return 0;
 }
